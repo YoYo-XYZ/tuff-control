@@ -2,7 +2,7 @@
 
 This project controls the robot's four magnum wheels.
 
-The 
+The current hardware stack is Arduino uno r3 -> 12V motor driver -> DC motor connected with magnum wheels
 
 `motor_code_ref.cpp` contains motor driver's official documentation best-practice reference code. Read it when implementing or changing motor control code.
 
