@@ -1,6 +1,6 @@
 # Project context
 
-This project controls the robot's four magnum wheels.
+This project controls the robot's four mecanum wheels.
 
 - The current hardware stack is Arduino uno r3 -> L298N Motor Driver Module -> 12 DC motor connected with magnum wheels
 
