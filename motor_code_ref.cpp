@@ -1,5 +1,4 @@
- 
-const int IN1=5; 
+ const int IN1=5; 
 const int IN2=4; 
 const int ENA=6; 
  
