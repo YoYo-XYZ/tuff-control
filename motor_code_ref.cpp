@@ -7,6 +7,9 @@ const int IN4=7;
 const int ENB=9; 
  
 void setup() { 
+     Serial.begin(9600);
+     pinMode(A0, INPUT);
+     pinMode(A5, INPUT);
      pinMode(IN1, OUTPUT); 
      pinMode(IN2, OUTPUT); 
      pinMode(ENA, OUTPUT); 
@@ -18,19 +21,50 @@ void setup() {
 } 
  
 void loop() { 
- Motor1_Brake(); 
- Motor2_Brake(); 
- delay(100); 
- Motor1_Forward(200); 
- Motor2_Forward(200); 
- delay(1000); 
- Motor1_Brake(); 
- Motor2_Brake(); 
- delay(100); 
- Motor1_Backward(200); 
- Motor2_Backward(200); 
- delay(1000);  
-} 
+ updateMotors();
+ printEncoderReadings();
+}
+
+void printEncoderReadings() {
+ static unsigned long lastReading = 0;
+ unsigned long now = millis();
+ if (now - lastReading < 2) return;
+ lastReading = now;
+
+ Serial.print("A0:");
+ Serial.print(analogRead(A0));
+ Serial.print("\tA5:");
+ Serial.println(analogRead(A5));
+}
+
+void updateMotors() {
+ static byte step = 0;
+ static unsigned long stepStarted = 0;
+ static unsigned long stepDuration = 0;
+ unsigned long now = millis();
+ if (now - stepStarted < stepDuration) return;
+ stepStarted = now;
+
+ switch (step) {
+ case 0:
+ case 2:
+     Motor1_Brake();
+     Motor2_Brake();
+     stepDuration = 100;
+     break;
+ case 1:
+     Motor1_Forward(200);
+     Motor2_Forward(200);
+     stepDuration = 1000;
+     break;
+ case 3:
+     Motor1_Backward(200);
+     Motor2_Backward(200);
+     stepDuration = 1000;
+     break;
+ }
+ step = (step + 1) % 4;
+}
  
 void Motor1_Forward(int Speed)  
 { 
