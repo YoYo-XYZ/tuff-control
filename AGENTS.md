@@ -8,6 +8,6 @@ This project controls the robot's four mecanum wheels.
 
 # Coding guidelines
 
-- Prioritize lean, simple, maintainable code.
+- Prioritize lean, simplicity, easy-to maintain code, easy to understand for a single person who is a beginner at robot controls
 - Use clear names and straightforward control flow.
 - Make surgical changes. Edit only what the task requires and avoid unrelated refactoring or formatting changes.
