@@ -74,7 +74,3 @@ External libraries:
 - `ESP32Encoder` — Read wheel encoders.
 - `PID_v1` — Control individual motor speeds.
 - Arduino-ESP32 — Handle PWM, GPIO, and Serial.
-
-
-
-
