@@ -2,6 +2,7 @@ see software-chart.png
 
 ## Repo structure
 
+```text
 mecanum_robot/
 │
 ├── ros2_ws/
@@ -35,6 +36,7 @@ mecanum_robot/
 │   └── platformio.ini
 │
 └── README.md
+```
 
 ## Design principles
 1. One ROS 2 package: Keep configuration, launch files, and hardware integration together.
