@@ -1,4 +1,6 @@
-Software chart in software-chart.png
+see software-chart.png
+
+## Repo structure
 
 mecanum_robot/
 │
@@ -34,6 +36,14 @@ mecanum_robot/
 │
 └── README.md
 
+## Design principles
+1. One ROS 2 package: Keep configuration, launch files, and hardware integration together.
+2. One ESP32 firmware project: Use a single main.cpp initially.
+3. Reuse libraries: Don't implement mecanum kinematics, PID, or encoder decoding from scratch.
+4. Separate responsibilities: Jetson handles robot movement; ESP32 handles individual motors.
+5. Keep configuration centralized: Put adjustable parameters in controllers.yaml and config.h.
+6. Avoid unnecessary abstractions: Add additional modules only when the existing code becomes difficult to maintain.
+
 ## ROS 2 — Jetson
 File	Purpose
 controllers.yaml	Configure the mecanum controller and wheel parameters.
@@ -52,14 +62,6 @@ File	Purpose
 main.cpp	Read encoders, execute four PID controllers, control motor PWM/direction, and handle USB Serial communication and safety.
 config.h	Store GPIO pins, PID parameters, encoder resolution, and motor limits.
 platformio.ini	Configure the ESP32 board and external libraries.
-
-## Design principles
-1. One ROS 2 package: Keep configuration, launch files, and hardware integration together.
-2. One ESP32 firmware project: Use a single main.cpp initially.
-3. Reuse libraries: Don't implement mecanum kinematics, PID, or encoder decoding from scratch.
-4. Separate responsibilities: Jetson handles robot movement; ESP32 handles individual motors.
-5. Keep configuration centralized: Put adjustable parameters in controllers.yaml and config.h.
-6. Avoid unnecessary abstractions: Add additional modules only when the existing code becomes difficult to maintain.
 
 
 
